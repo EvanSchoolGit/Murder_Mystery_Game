@@ -37,6 +37,8 @@ def movement(direction):
     y_loc+= 1
 
 while True:
+  with open(mapfile) as file:
+    print(file.read())
   print("COORDINATES: ",f"{x_loc}, {y_loc}")
   direction = input("CHOICE: ")
   movement(direction)
