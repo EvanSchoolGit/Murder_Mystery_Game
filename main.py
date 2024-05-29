@@ -5,7 +5,7 @@
 #Item Interactions (Hard)
 #Intro
 #Multiple Endings
-########################################################################
+#######################################################################
 # Title : Murder Mystery
 # Class : Computer Science 30
 # Assighnment : make a murder mystery text game
@@ -16,6 +16,7 @@
 Fill me out!!!!!
 """
 ###########################-IMPORTS-############################################
+
 ############################-SETUP-#############################################
 """Location Values"""
 x_loc=0
