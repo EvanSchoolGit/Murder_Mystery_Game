@@ -22,6 +22,11 @@ Fill me out!!!!!
 x_loc=0
 y_loc=0
 
+"Progress Keys"
+
+
+
+
 """File Setups"""
 mapfile = 'map.txt'
 
@@ -69,10 +74,14 @@ def roomdesc():
     print (rooms["Room 120"]["name"])
     print("")
     print (rooms["Room 120"]["description"])
-  elif x_loc == 1 and y_loc == 1 or x_loc == 2 and y_loc == 1:
+  elif x_loc == 1 and y_loc == 1:
     print (rooms["Hallway"]["name"])
     print("")
     print (rooms["Hallway"]["description"])
+  elif x_loc == 0 and y_loc == 1:
+    print (rooms["Hallway"]["name"])
+    print("")
+    print ("[PRESS Q] ... What do I need to again?")
   
 """Simple Movements"""
 def movement(direction): 
@@ -89,6 +98,7 @@ def movement(direction):
 while True:
   with open(mapfile) as file:
     print(file.read())
+  roomdesc()
   print("COORDINATES: ",f"{x_loc}, {y_loc}")
   direction = input("CHOICE: ")
   movement(direction)

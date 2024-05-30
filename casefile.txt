@@ -4,13 +4,15 @@
 Name: Oliver Finch
 Age: 26
 Occupation: Wastewater Engineer
-Other: Oliver is a timid young man with a predisposition to getting caught in unlucky situations. He is a rather sickly boy, maybe he could have used the money for medical bills?
+Other: Oliver is a timid young man with a predisposition to getting caught in unlucky situations. He has been incredibly ill since he was a young boy. Maybe he could have used the money for medical bills?
 
 Name: Vixen Browne     
 Age: 32    
 Occupation: Part-time employee at CVS
-Other: Vixen is a                                     VICTIM
-                                          
+Other: Vixen is a rather jaded and worn-out woman. She recently lost her spouse, which forced her to quit her job and begin working part-time so she would have time for her children. 
+
+                                        VICTIM
+
 Name: Lucas Brookes                Name: Lisa Brookes
 Age: 35                            Age: 33
 Occupation: Retired (Veteran)      Occupation: Financial Officer
