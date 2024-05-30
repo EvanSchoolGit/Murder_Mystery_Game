@@ -20,10 +20,10 @@ Fill me out!!!!!
 ############################-SETUP-#############################################
 """Location Values"""
 x_loc=0
-y_loc=0
+y_loc=1
 
 "Progress Keys"
-
+corpse_discovery = 0
 
 
 
@@ -53,6 +53,8 @@ rooms = {
 
 }
 
+
+
 def intro():
   input("")
   
@@ -78,7 +80,7 @@ def roomdesc():
     print (rooms["Hallway"]["name"])
     print("")
     print (rooms["Hallway"]["description"])
-  elif x_loc == 0 and y_loc == 1:
+  elif x_loc == 0 and y_loc == 1 and corpse_discovery == 0:
     print (rooms["Hallway"]["name"])
     print("")
     print ("[PRESS Q] ... What do I need to again?")
@@ -86,14 +88,16 @@ def roomdesc():
 """Simple Movements"""
 def movement(direction): 
   global x_loc, y_loc
-  if direction == "a": #Classic WASD Controls
+  if direction == "a" or "A": #Classic WASD Controls
     x_loc-= 1
-  elif direction == "d":
+  elif direction == "d" or "D":
     x_loc+= 1
-  elif direction == "w":
+  elif direction == "w" or "W":
     y_loc-= 1
-  elif direction == "s":
+  elif direction == "s" or "S":
     y_loc+= 1
+  elif direction == "q" or "Q":
+    if x_loc =
 
 while True:
   with open(mapfile) as file:
