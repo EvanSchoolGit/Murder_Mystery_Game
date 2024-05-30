@@ -26,30 +26,54 @@ y_loc=0
 mapfile = 'map.txt'
 
 rooms = {
-  "First": {
-    "name" : "ROOM: Strange Room",
-    "description" : """'There is a scent of blood. Proceed with caution'"""},
+  "Room 118": {
+    "name" : "ROOM: Room 118",
+    "description" : ""'Oliver lives here'""},
 
-  "Second": {
-    "name" : "ROOM: Strange Room",
-    "description" : """'There is a scent of sweat. Proceed with caution'"""},
+  "Room 119": {
+    "name" : "ROOM: Room 119",
+    "description" : """INSERT BLURB """},
 
-  "Last": {
-    "name" : "ROOM: Strange Room",
-    "description" : """'There is a scent of tears. Proceed with caution'"""},
+  "Room 120": {
+    "name" : "ROOM: Room 120",
+    "description" : """Lucas and Lisa used to live here"""},
 
-  "Gag": {
-    "name" : "ROOM: The Dungeon",
-    "description" : "'The Cobblestone flooring does not match with the office'"},
+  "Room 121": {
+    "name" : "ROOM: Room 121",
+    "description" : "Vixen lives here"},
 
-  "FINAL": {
-    "name" : "ROOM: Final Stage",
-    "description" : "'If I go past this area, I should be prepared...'"}
+  "Hallway": {
+    "name" : "ROOM: Hallway",
+    "description" : "The corpse is placed here"}
+
+}
 
 def intro():
   input("")
   
 
+def roomdesc():
+  if x_loc == 0 and y_loc == 0:
+    print (rooms["Room 119"]["name"])
+    print("")
+    print (rooms["Room 119"]["description"])
+  elif x_loc == 1 and y_loc == 0:
+    print (rooms["Room 121"]["name"])
+    print("")
+    print (rooms["Room 121"]["description"])
+  elif x_loc == 0 and y_loc == 2:
+    print (rooms["Room 118"]["name"])
+    print("")
+    print (rooms["Room 118"]["description"])
+  elif x_loc == 1 and y_loc == 2:
+    print (rooms["Room 120"]["name"])
+    print("")
+    print (rooms["Room 120"]["description"])
+  elif x_loc == 1 and y_loc == 1 or x_loc == 2 and y_loc == 1:
+    print (rooms["Hallway"]["name"])
+    print("")
+    print (rooms["Hallway"]["description"])
+  
 """Simple Movements"""
 def movement(direction): 
   global x_loc, y_loc
