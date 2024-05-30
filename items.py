@@ -7,8 +7,8 @@ class Items():
   pass
 
 autopsy = Items(name = "Improved Autopsy",
-               description = "The greatest minds here came up with this",
-               progress = 0)
+    description = "The greatest minds here came up with this",
+    progress = 0)
 bullet_casing = Items(name = "5.11 Bullet Casing",
    description = "The 5.11 usually belongs to SE brand guns",
    progress = 0)
@@ -21,3 +21,7 @@ vixen_gun = Items(name = "SE Semi Automatic",
 safe_keycard = Items(name = "Grimy Piece of Paper",
    description = "A scrap of paper with the numbers 1294. It's covered with red stains",
    progress = 0)
+rent_bill = Items(name = "Overdue Rent Bill",
+   description = "It looks like the person who was given this was short 65$...",
+   progress = 0)
+

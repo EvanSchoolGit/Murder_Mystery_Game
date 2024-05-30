@@ -3,7 +3,6 @@
 ## PREMISE
 You play as a detective investigating the murder of Lisa Brookes, a 33 year old Chief Finacial Officer. You search the murder scene for clues, question three different suspects, and prosecute who you believe comitted the crime.
 
-
 ## NEED TO HAVE:
 Map System,
 Dialogue and Character System,

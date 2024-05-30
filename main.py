@@ -9,7 +9,7 @@
 # Title : Murder Mystery
 # Class : Computer Science 30
 # Assighnment : make a murder mystery text game
-# Coder : Evan Urban
+# Coder : Evan Urban and Tibby Schell
 # Version : 1
 ########################################################################
 """ 
@@ -24,6 +24,31 @@ y_loc=0
 
 """File Setups"""
 mapfile = 'map.txt'
+
+rooms = {
+  "First": {
+    "name" : "ROOM: Strange Room",
+    "description" : """'There is a scent of blood. Proceed with caution'"""},
+
+  "Second": {
+    "name" : "ROOM: Strange Room",
+    "description" : """'There is a scent of sweat. Proceed with caution'"""},
+
+  "Last": {
+    "name" : "ROOM: Strange Room",
+    "description" : """'There is a scent of tears. Proceed with caution'"""},
+
+  "Gag": {
+    "name" : "ROOM: The Dungeon",
+    "description" : "'The Cobblestone flooring does not match with the office'"},
+
+  "FINAL": {
+    "name" : "ROOM: Final Stage",
+    "description" : "'If I go past this area, I should be prepared...'"}
+
+def intro():
+  input("")
+  
 
 """Simple Movements"""
 def movement(direction): 

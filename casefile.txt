@@ -1,0 +1,20 @@
+---------------------------------------------------------------
+      SUSPECTS                
+
+Name: Oliver Finch
+Age: 26
+Occupation: Wastewater Engineer
+Other: 
+
+Name: Vixen Browne     
+Age: 32    
+Occupation:
+Other:                                     VICTIM
+                                          
+Name: Lucas Brookes                Name: Lisa Brookes
+Age: 35                            Age: 33
+Occupation: Retired (Veteran)      Occupation: Financial Officer
+Other:                             Other:
+
+
+---------------------------------------------------------------
