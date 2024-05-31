@@ -4,17 +4,17 @@
 Name: Oliver Finch
 Age: 26
 Occupation: Wastewater Engineer
-Other: Oliver is a timid young man with a predisposition to getting caught in unlucky situations. He has been incredibly ill since he was a young boy. Maybe he could have used the money for medical bills?
+Other: Oliver is a timid young man with a predisposition to getting caught in unlucky situations. He has been incredibly ill since he was a young boy. Medical bills are high he has only recently gotten a stable job. This could be motive for a robbery.
 
 Name: Vixen Browne     
 Age: 32    
 Occupation: Part-time employee at CVS
-Other: Vixen is a rather jaded and worn-out woman. She recently lost her spouse, which forced her to quit her job and begin working less hours so she would have time for her children.
+Other: Vixen is a rather jaded and worn-out woman. She recently lost her spouse, which forced her to quit her job and begin working less hours so she would have time for her children. Balancing work and caring for young children is tough, especially on your own. This could be motive for a robbery.
 
 Name: Lucas Brookes                
 Age: 35                            
 Occupation: Retired (Veteran)      
-Other:                             
+Other: Lucas was previously enlisted in the Army. When he returned home, he was like an entirely different person. Given no outlet for the trauma he experienced, Lucas became an aggresive and tempremental man. 
 
       VICTIM 
 
