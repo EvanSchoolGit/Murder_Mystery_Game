@@ -30,6 +30,9 @@ corpse_discovery = 0
 
 """File Setups"""
 mapfile = 'map.txt'
+person = 'person.txt'
+movementui = 'movementui.txt'
+mainui = 'mainui.txt'
 
 rooms = {
   "Room 118": {
@@ -62,6 +65,8 @@ def intro():
 def tutorial():
   #DRAFT TEXT, FEEL FREE TO CHANGE ANYTHING, THIS IS ALL RUBBISH
   global wilson_progress
+  with open(person) as file:
+    print(file.read())
   if wilson_progress == 0:
     input("'God youre so ugly!'")
     input("'Why does your skin look transparent, jesus christ'")
@@ -89,7 +94,7 @@ def tutorial():
     input("'Look...'")
     input("'Your job is to go around and interact with every single thing that moves'")
     print("'But before you start barging into other peoples rooms, I need you to")
-    input(" inspect the body first, and go to room 118 to meet the suspects'")
+    input(" inspect the body first, and go to room 119 to meet the suspects'")
     print("")
     #ROUGH IDEAS
     input("Also..")
@@ -162,8 +167,17 @@ def corpseinter():
       print("jiej")
     corpse_discovery += 1
 
-
-
+def movementbarrier():
+  global y_loc
+  if corpse_discovery == 0:
+    if y_loc == 0:
+      y_loc +=1
+      print("[YOU NEED TO INSPECT THE BODY FIRST]")
+    elif y_loc == 2:
+      y_loc -=1
+      print("[YOU NEED TO INSPECT THE BODY FIRST]")
+  
+### ALTERANTIVE MAP/MOVEMENT DESIGN, instead of WASD just ask where the user wants to go
   
   
 
@@ -196,24 +210,49 @@ def roomdesc():
 """Simple Movements"""
 def movement(direction): 
   global x_loc, y_loc
-  if direction == "a" or direction == "A": #Classic WASD Controls
-    x_loc-= 1
-  elif direction == "d" or direction == "D":
-    x_loc+= 1
-  elif direction == "w" or direction == "W":
-    y_loc-= 1
-  elif direction == "s" or direction == "S":
-    y_loc+= 1
-  elif direction == "q" or direction == "Q":
+  if direction == "1":  #This will ask directly where the user wants to go.
+    while True:
+      with open(movementui) as file:
+        print(file.read())
+      directionquest = input("Where do you want to go to?: ")
+      if directionquest == "1":
+        x_loc = 0
+        y_loc = 0
+        break
+      elif directionquest == "2":
+        x_loc = 1
+        y_loc = 0
+        break
+      elif directionquest == "3":
+        x_loc = 0
+        y_loc = 1
+        break
+      elif directionquest == "4":
+        x_loc = 1
+        y_loc = 1
+        break
+      elif directionquest == "5":
+        x_loc = 0
+        y_loc = 2
+        break
+      elif directionquest == "6":
+        x_loc = 1
+        y_loc = 2
+        break
+      else:
+        pass
+      
+  elif direction == "2":
     if x_loc == 0 and y_loc == 1:
       tutorial()
     elif x_loc == 1 and y_loc == 1:
       corpseinter()
 
 while True:
-  with open(mapfile) as file:
+  with open(mainui) as file:
     print(file.read())
   roomdesc()
+  #DEV TOOL
   print("COORDINATES: ",f"{x_loc}, {y_loc}")
   direction = input("CHOICE: ")
   movement(direction)

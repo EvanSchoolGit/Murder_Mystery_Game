@@ -1,0 +1,8 @@
+What do YOU need to do?
+--------------------------------
+[1] - Move
+[2] - Interact
+[3] - Check Inventory
+
+[X] - Quit
+--------------------------------

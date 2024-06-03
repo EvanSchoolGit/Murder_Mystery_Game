@@ -32,7 +32,7 @@ Player can talk to suspects (optional)
  if you unlock safe with numbers, he will say that he did it, without a motive.
 
 ## Player can inspect Room 120
-can find lucas's gun in his drawerer --> Question Lucas
+can find lucas's gun in his drawer --> Question Lucas
 Lucas will elaborate and say that the gun is assigned to him
 can find punch holes in the walls --> Question Lucas
 
@@ -72,7 +72,7 @@ If Lucas's secerets were revealed, the public would lambast Lucas as a terrible 
 
 ### Arrest Vixen
 DRAFT
-Vixen is sentenced, no one is upset with the ruling, but rather upset with how Vixen was placed in this poor situation. She'd be an example of unfortunate circumstance for years to come, and eventually had a charity orginization named after her with a mixed reputation. You were reprimanded by your boss, and now have tinnitus 
+Vixen is sentenced, no one is upset with the ruling, but rather upset with how Vixen was placed in this poor situation. She'd be an example of unfortunate circumstance for years to come, and eventually had a charity orginization named after her with a mixed reputation. You were reprimanded by your boss, and now have tinnitus! 
 
 ### Arrest Wilson
 DRAFT
