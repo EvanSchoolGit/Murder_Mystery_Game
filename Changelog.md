@@ -6,3 +6,9 @@
 ### Dialougue System
 
 # CHANGELOG
+
+Version 0.10
+-added movement system
+-added inventory system
+-added inspection
+-added dialogue features such as random chance

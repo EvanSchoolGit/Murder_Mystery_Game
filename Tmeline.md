@@ -1,6 +1,12 @@
 JUNE 3rd:
 Basic movement/mechanics such as inventory retrieval, and inspection
+COMPLETED
 
+JUNE 7th
+Finish Rooms
+
+JUNE 10th
+Finish Dialouge
 
 
 
