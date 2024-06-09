@@ -1,5 +1,7 @@
 import random
 
+import os
+
 from items import autopsy, bullet_casing, lucas_gun, rent_bill, safe_keycard, vixen_gun
 
 
@@ -33,7 +35,8 @@ y_loc=1
 "Progress Keys"
 wilson_progress = 0
 corpse_discovery = 0
-
+vixen_roomentry = 0
+kidlock = 0
 "Child Class Setups"
 
 
@@ -47,7 +50,7 @@ autopsyfile = 'autopsy.txt'
 rooms = {
   "Room 118": {
     "name" : "ROOM: Room 118",
-    "description" : ""'Oliver lives here'""},
+    "description" : ""'Oliver lives here.'""},
 
   "Room 119": {
     "name" : "ROOM: Room 119",
@@ -55,19 +58,20 @@ rooms = {
 
   "Room 120": {
     "name" : "ROOM: Room 120",
-    "description" : """Lucas and Lisa used to live here"""},
+    "description" : """Lucas and Lisa used to live here."""},
 
   "Room 121": {
     "name" : "ROOM: Room 121",
-    "description" : "Vixen lives here"},
+    "description" : "Vixen lives here."},
 
   "Hallway": {
     "name" : "ROOM: Hallway",
-    "description" : "The corpse is placed here"}
+    "description" : "The corpse is placed here."}
 
 }
 
-
+def cls():
+  os.system('cls' if os.name=='nt' else 'clear')
 
 def intro():
   input("")
@@ -111,7 +115,7 @@ def tutorial():
     #ROUGH IDEAS
     input("Also..")
     input("A reminder that your firm is owned by Jax Co...: ")
-    input("I could care less about who actually did it: ")
+    input("I couldn't care less about who actually did it: ")
     input("Just make sure the person you arrest SEEMS evil: ")
     print("GOT IT?")
     print("")
@@ -178,7 +182,7 @@ def corpseinter():
       print("")
       input("...")
       input("*You lost your train of thought...")
-      print("[1] Reannalize the body {90%}")
+      print("[1] Reanalyze the body {90%}")
       print("[2] Read the autopsy that was given instead")
       corpsequesta2 = input("CHOICE: ")
       if corpsequesta2 == "1":
@@ -195,17 +199,17 @@ def corpseinter():
       elif corpsequesta2 == "2":
          with open(autopsyfile) as file:
            print(file.read())
-         input(">...This is the worst autopsy youve ever read.")
+         input(">...This is the worst autopsy you've ever read.")
   
     elif corpsequest == "2":
       input("'Here ya go, Madam.'")
-      input("'*The officer hands you a wrinkled piece of paper'")
+      input("'*The officer hands you a wrinkled piece of paper.'")
       with open(autopsyfile) as file:
          print(file.read())
-      input(">...This is the worst autopsy youve ever read")
+      input(">...This is the worst autopsy youve ever read.")
       autopsy.progress += 1    
     input("...")
-    input(">I think we are done here")
+    input(">I think we are done here...")
     corpse_discovery += 1
 
 #prevent player from moving past mandatory scenes
@@ -218,6 +222,11 @@ def movementbarrier():
       x_loc = 0
       y_loc = 1
       print("[YOU NEED TO INSPECT THE BODY FIRST]")
+  if vixen_roomentry == 2 and x_loc == 1 and y_loc == 0:
+    x_loc = 1
+    y_loc = 1
+    print("[YOU MADE A KID CRY, SHE IS NOT LETTING YOU INSIDE.]")
+    
   
 ### ALTERANTIVE MAP/MOVEMENT DESIGN, instead of WASD just ask where the user wants to go
 
@@ -269,29 +278,30 @@ def roomdesc():
     print ("[PRESS Q] ... What do I need to again?")
   
 def suspectroom():
-  #INTEROGATION AND DIALOUGE SYSTEM
+  #INTEROGATION AND DIALOGUE SYSTEM
   pass
   
 def vixentalk():
-  #VIXEN DIALOUGE AND QUESTIONING
+  #VIXEN DIALOGUE AND QUESTIONING
   pass
   
 def lucastalk():
-  #LUCAS DIALOUHE AND QUESTIONING
+  #LUCAS DIALOGUE AND QUESTIONING
   pass
   
 def olivertalk():
-  #OLIVER DIALOUGE AND QUESTIONING
+  #OLIVER DIALOGUE AND QUESTIONING
   pass
   
-def vixenroom():
-  input("*You look around the room...")
-  input("*Cracks and mold are present in the walls...")
+def vixenroomentry():
+  global vixen_roomentry
+  input("*You open the door...")
+  input("*Cracks and mold are immediately present before entry...")
   input("*This would breach a few RISHA regulations...")
   input("...")
   input("'Hello?'")
   print("")
-  input("*A child peeks around a corner, staring at you.")
+  input("*A child peeks around the doorframe, staring at you.")
   print("")
   print("[1] Wassup dude")
   print("[2] Are you not supposed to be here?")
@@ -299,24 +309,145 @@ def vixenroom():
   if childquest == "1":
     print(">Wassup dude")
     print("")
-    input("'I'm not a dude!' the kid whinges")
+    input("'I'm not a dude!' the kid whines.")
     input("'I'm a girl, watch!'")
-    input("*The child claps her hands as she spins around energetically")
+    input("*The child claps her hands as she spins around energetically.")
     input("'See!'")
     input("*The child has a pride in her performance...")
     print("")
     print("[1] Wow! You are so good... at... that!")
-    print("[2] Honestly, that was once of the worst performances I have ever seen, and I think you should give up")
-    pass
+    print("[2] Honestly, that was once of the worst performances I have ever seen, " +
+    "and I think you should give up, as soon as possible.")
+    childquesta = input("CHOICE: ")
+    if childquesta == "1":
+      print("> Wow! You are so good... at... that!")
+      print("")
+      input("'I know!'")
+      input("'I'm not allowed to let angry men inside'")
+      input("'My mom told me that'")
+      print("")
+      print("[1] I am not angry")
+      print("[2] I am not a man")
+      childquesa1 = input("CHOICE: ")
+      if childquesa1 == "1":
+        print(">I am not angry")
+        print("")
+        input("'Oh, Okay!'")
+        input("*The child opens the door wider")
+        input("'Come inside!'")
+        vixen_roomentry += 1
+      elif childquesa1 == "2":
+        print(">I am not a man")
+        print("")
+        input("'Oh...'")
+        input("*She squints her eyes...")
+        input("'What are you then?'")
+        print("")
+        input("*You don't know how to answer that...")
+        input("'Doesn't matter! You can come in!'")
+        vixen_roomentry += 1
+      else:
+        input("*At this moment in time, the worst scenario to have an episode, " +
+          "is at this current conversation")
+        input("*However, as she looks at you with a curious gaze, " +
+          "it quickly turns into a horrified stare as the bones " +
+          "in your body begin to crack")
+        input("*Your jaw unhinges, while your posture slumps, still keeping your eye" +
+          "contact with her")
+        input("*She immediateley slams the door...")
+        print("")
+        input(">...dammit")
+        vixen_roomentry += 2
+    elif childquesta == "2":
+      print(">Honestly, that was once of the worst performances I have ever seen, " +
+    "and I think you should give up, as soon as possible.")
+      print("")
+      input("*The child covers her mouth as if you shouted at her.")
+      input("*She holds her hands still as her breathing draws quicker and quicker.")
+      input("*Tears form around her eyes, as she tries to stiffle her reaction,")
+      input("*But she cannot hold it in.")
+      input("*Congratulations, you just made a kid cry!")
+      input("*She immediateley slams the door...")
+      print("")
+      input(">Alright...")
+      vixen_roomentry += 2
+    else:
+      input("*At this moment in time, the worst scenario to have an episode, " +
+            "is at this current conversation")
+      input("*However, as she gazes at you with a proud look, " +
+            "it quickly turns into a horrified stare as the bones " +
+            "in your body begin to crack")
+      input("*Your jaw unhinges, while your posture slumps, still keeping your eye" +
+            "contact with her")
+      input("*She immediateley slams the door...")
+      print("")
+      input(">...Dammit")
+      vixen_roomentry += 2
   elif childquest == "2":
     print(">Are you not supposed to be here?")
+    print("")
+    input("*It scowls at you...")
+    input("'Are YOU not supposed to be here'")
+    input("'MY mom says I shouldn't let angry men inside'")
+    input("'and you seem to be all of those things...'")
+    print("")
+    print("[1] *Rush inside and throw the kid out (80%)")
+    print("[2] I am actually a very reasonable person")
+    childquestb = input("CHOICE: ")
+    if childquestb == ("1"):
+      childrandom = random.randint(0, 10)
+      if childrandom > 8:
+        print("[FAILURE]")
+        input("*You take form in a sprinter's position...")
+        input("*You have to act fast, and calculated, and-")
+        input("*...chk...click")
+        input("*...The door losed...")
+        input("*You slowly get up.")
+        input(">...Alright.")
+        vixen_roomentry += 2
+      elif childrandom < 8:
+        print("[SUCCESS]")
+        input("In one swift action, you ran inside as well as pushing out the child.")
+        input("'HEY!'")
+        input("*SLAM...click")
+        input("*You closed, and locked the door...")
+        kidlock += 1
+        vixen_roomentry += 1
+    elif childquestb == "2":
+      print(">I am actually very reasonable")
+      print("")
+      input("'Oh, Okay!'")
+      input("*The kid opens the door a bit more.")
+      input("'Come in!'")
+      vixen_roomentry += 1
+    else:
+      input("*...chk...click")
+      input("*...The door closed...")
+      input(">...Alright.")
+      
+        
+     
+    
     pass
   else:
     pass
   
   #VIXEN ROOM AND INTERACTION
   pass
-  
+
+def vixenroom():
+  input("*You step inside...")
+  input("*What should I do first?")
+  print("[1] CHECK THE BEDROOM")
+  print("[2] CHECK THE LIVING ROOM")
+  print("[3] CHECK THE BATHROOM")
+  if kidlock < 1:
+    print("[4] TALK TO THE CHILD")
+  vixenroomchoice = ("CHOICE")
+  if vixenroom
+  pass
+
+
 def lucasroom():
   #LUCAS ROOM AND INTERACTION
   pass
@@ -339,7 +470,15 @@ def movement(direction):
       elif directionquest == "2":
         x_loc = 1
         y_loc = 0
-        break
+        if vixen_roomentry == 0:
+          vixenroomentry()
+        elif vixen_roomentry == 2:
+          x_loc = 1
+          y_loc = 1
+          input("[YOU MADE A KID CRY, SHE IS NOT LETTING YOU INSIDE.]")
+          break
+        else:
+          break
       elif directionquest == "3":
         x_loc = 0
         y_loc = 1
@@ -357,16 +496,20 @@ def movement(direction):
         y_loc = 2
         break
       else:
-        pass
-      
+        pass     
   elif direction == "2":
     if x_loc == 0 and y_loc == 1:
       tutorial()
     elif x_loc == 1 and y_loc == 1:
       corpseinter()
+    elif x_loc == 1 and y_loc == 0:
+      vixenroom()
+    else:
+      input("*THERE IS NOTHING HERE TO DO")
   elif direction == "3":
     inventory()
 while True:
+  cls()
   with open(mainui) as file:
     print(file.read())
   roomdesc()
@@ -378,4 +521,4 @@ while True:
   movement(direction)
 
 
-#heheh
+#heheh 
