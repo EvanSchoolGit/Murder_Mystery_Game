@@ -37,6 +37,7 @@ wilson_progress = 0
 corpse_discovery = 0
 vixen_roomentry = 0
 kidlock = 0
+safeprogress = 0
 "Child Class Setups"
 
 
@@ -250,6 +251,7 @@ def inventory():
 
   print("---------------------------------------")
   print("")
+  input("input")
 
 def roomdesc():
   if x_loc == 0 and y_loc == 0:
@@ -294,7 +296,7 @@ def olivertalk():
   pass
   
 def vixenroomentry():
-  global vixen_roomentry
+  global vixen_roomentry, kidlock
   input("*You open the door...")
   input("*Cracks and mold are immediately present before entry...")
   input("*This would breach a few RISHA regulations...")
@@ -424,37 +426,121 @@ def vixenroomentry():
       input("*...chk...click")
       input("*...The door closed...")
       input(">...Alright.")
-      
-        
-     
-    
-    pass
   else:
     pass
-  
-  #VIXEN ROOM AND INTERACTION
   pass
 
+
+
 def vixenroom():
+  #WRITE BETTER LATER
+  global safeprogress
   input("*You step inside...")
   input("*What should I do first?")
-  print("[1] CHECK THE BEDROOM")
-  print("[2] CHECK THE LIVING ROOM")
-  print("[3] CHECK THE BATHROOM")
-  if kidlock < 1:
-    print("[4] TALK TO THE CHILD")
-  vixenroomchoice = ("CHOICE")
-  if vixenroom
-  pass
+  while True:
+    cls()
+    print("")
+    print("------------------------------------")
+    print("[1] CHECK THE BEDROOM")
+    print("[2] CHECK THE LIVING ROOM")
+    print("[3] CHECK THE BATHROOM")
+    if kidlock < 1:
+      print("[4] TALK TO THE CHILD")
+    print("[5] DO SOMETHING ELSE")
+    print("------------------------------------")
+    print("")
+    vixenroomchoice = input("CHOICE: ")
+    if vixenroomchoice == "1" and safeprogress == 0:
+      input("YOU FOUND SAFE")
+      safekeypad = input("INPUT: ")
+      if safekeypad == "187":
+        input("DING")
+        vixen_gun.progress += 1
+        safeprogress += 1
+        input("YOU OBTAINED A GUN")
+      else:
+        input("BEEP")
+        input("*You got it wrong")
+        pass      
+      pass
+      input("*You Already inspected this")
+    elif vixenroomchoice == "2":
+      input("YOU FOUND RENT BILL")
+      rent_bill.progress += 1
+      pass
+    elif vixenroomchoice == "3":
+      input("YOU FOUND NOTHING")
+      pass
+    elif vixenroomchoice == "4":
+      input("'Googoo ga ga lore dump'")
+      pass
+    elif vixenroomchoice == "5":
+      break
+    else:
+      input("WRONG INPUT")
+  
 
 
 def lucasroom():
+  #WRITE BETTER
+  input("*You step inside...")
+  input("*What should I do first?")
+  while True:
+    cls()
+    print("")
+    print("------------------------------------")
+    print("[1] CHECK THE BEDROOM")
+    print("[2] CHECK THE LIVING ROOM")
+    print("[3] CHECK THE BATHROOM")
+    print("[4] DO SOMETHING ELSE")
+    print("------------------------------------")
+    print("")
+    lucasroomchoice = input("CHOICE: ")
+    if lucasroomchoice == "1":
+      input("YOU FOUND REVOLVER")
+      lucas_gun.progress+=1
+      pass
+    elif lucasroomchoice == "2":
+      input("Geez rick this place is bougie")
+      pass
+    elif lucasroomchoice == "3":
+      input("MORTY, IM IN THE TOILET MORTY")
+      pass
+    elif lucasroomchoice == "4":
+      break
+    else:
+      input("WRONG INPUT")
+      pass
+      
   #LUCAS ROOM AND INTERACTION
-  pass
   
 def oliverroom():
+  input("*You step inside...")
+  input("*What should I do first?")
+  while True:
+    cls()
+    print("")
+    print("------------------------------------")
+    print("[1] CHECK THE BEDROOM")
+    print("[2] CHECK THE BATHROOM")
+    print("[3] DO SOMETHING ELSE")
+    print("------------------------------------")
+    print("")
+    oliverroomchoice = input("CHOICE: ")
+    if oliverroomchoice == "1":
+      input("This is really depressing")
+      pass
+    elif oliverroomchoice == "2":
+      input("*You plunged your hand into the the toilet hole")
+      input("*YOU FOUND VAULT PASS CODE")
+      safe_keycard.progress +=1
+      pass
+    elif oliverroomchoice == "3":
+      break
+    else:
+      input("WRONG INPUT")
+      pass
   #OLIVER ROOM AND INTERACTION
-  pass
   
 def movement(direction): 
   global x_loc, y_loc
@@ -498,12 +584,19 @@ def movement(direction):
       else:
         pass     
   elif direction == "2":
-    if x_loc == 0 and y_loc == 1:
+    if x_loc == 0 and y_loc == 0:
+      pass
+      #suspect room
+    elif x_loc == 1 and y_loc == 0:
+      vixenroom()
+    elif x_loc == 0 and y_loc == 1:
       tutorial()
     elif x_loc == 1 and y_loc == 1:
       corpseinter()
-    elif x_loc == 1 and y_loc == 0:
-      vixenroom()
+    elif x_loc == 0 and y_loc == 2:
+      oliverroom()
+    elif x_loc == 1 and y_loc == 2:
+      lucasroom()  
     else:
       input("*THERE IS NOTHING HERE TO DO")
   elif direction == "3":
