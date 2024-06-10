@@ -83,16 +83,25 @@ def cls():
 def intro():
   input("")
 
+def end():
+  with open(gameoverfile) as file:
+    print(file.read())
+  input("WHAT HAPPENS NEXT?: ")
+  print("...")
+  quit()
+  
 def oliverend():
-  pass
+  end()
 
 def lucasend():
-  pass
+  end()
 
 def vixenend():
-  pass
+  end()
 
 def wilsonend():
+  with open(gameoverwilson) as file:
+    print(file.read())
   pass
 
 def tutorial():
@@ -324,6 +333,7 @@ def suspectroom():
     if suspectroomchoice == "4":
       break
     if suspectroomchoice == "5":
+      arrest()
       pass
     
 
@@ -445,16 +455,16 @@ def arrest():
   print("[4] ARREST WILSON")
   print("[5] Let me rethink this...")
   print("--------------------------------------------------")
+  arrestchoice = input("CHOICE")
   while True:
-    arrestchoice = input("CHOICE")
     if arrestchoice == "1":
-      pass
+      oliverend()
     elif arrestchoice == "2":
-      pass
+      lucasend()
     elif arrestchoice == "3":
-      pass
+      vixenend()
     elif arrestchoice == "4":
-      pass
+      wilsonend()
     elif arrestchoice == "5":
       break
     else:
@@ -751,6 +761,7 @@ def movement(direction):
         pass     
   elif direction == "2":
     if x_loc == 0 and y_loc == 0:
+      suspectroom()
       pass
       #suspect room
     elif x_loc == 1 and y_loc == 0:
