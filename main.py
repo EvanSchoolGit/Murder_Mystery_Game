@@ -1,17 +1,9 @@
-import random
-
-import os
-
-from items import autopsy, bullet_casing, lucas_gun, rent_bill, safe_keycard, vixen_gun
-
 
 #CHECKLIST
-#Map and Movement System (easy)
-#Room Interaction (medium easy)
-#Nuanced Character Interaction Dependant on progress of game (HARDEST) 
-#Item Interactions (Hard)
-#Intro
-#Multiple Endings
+#Add option of descriptions in inventory
+#finish all dialouge
+#finish all endings
+#clean up UI
 #######################################################################
 # Title : Murder Mystery
 # Class : Computer Science 30
@@ -20,14 +12,17 @@ from items import autopsy, bullet_casing, lucas_gun, rent_bill, safe_keycard, vi
 # Version : 1
 ########################################################################
 """ 
-Fill me out!!!!!
+Incomplete Murder Mystery Game. 
 """
-###########################-IMPORTS-############################################
+###########################-IMPORTS-##########################
+import random
+import os
 
-############################-SETUP-#############################################
+from end import oliverend, lucasend, vixenend, wilsonend
+
+from items import autopsy, bullet_casing, lucas_gun, rent_bill, safe_keycard, vixen_gun
+
 """Location Values"""
-
-
 
 x_loc=0
 y_loc=1
@@ -51,8 +46,7 @@ personstress = 'personstress.txt'
 movementui = 'movementui.txt'
 mainui = 'mainui.txt'
 autopsyfile = 'autopsy.txt'
-gameoverfile = 'gameover.txt'
-gameoverwilson = 'gameoverwilson.txt'
+casefile = 'casefile.txt'
 
 rooms = {
   "Room 118": {
@@ -81,28 +75,28 @@ def cls():
   os.system('cls' if os.name=='nt' else 'clear')
 
 def intro():
-  input("")
-
-def end():
-  with open(gameoverfile) as file:
+  input("You are a commodity.")
+  input("You are interchangable to Oil, Land or Water")
+  input("Your value, however, is tied to work")
+  input("Such as gasoline's value is producing energy, you produce work")
+  input("Your work, however, is tied to solving murders")
+  input("You are the first of your brand to do so")
+  input("It is upmost importance, that you will excel at your job")
+  input("if not...")
+  input("'Products can always be recalled'")
+  print("")
+  input("...")
+  print("")
+  input("You arrive on the scene")
+  input("This is what you know...")
+  with open(casefile) as file:
     print(file.read())
-  input("WHAT HAPPENS NEXT?: ")
-  print("...")
-  quit()
-  
-def oliverend():
-  end()
+  input("...")
+  cls()
+  input("The memory burns...")
+  input("Get going, product")
 
-def lucasend():
-  end()
-
-def vixenend():
-  end()
-
-def wilsonend():
-  with open(gameoverwilson) as file:
-    print(file.read())
-  pass
+intro()
 
 def tutorial():
   #DRAFT TEXT, FEEL FREE TO CHANGE ANYTHING, THIS IS ALL RUBBISH
@@ -236,6 +230,13 @@ def corpseinter():
          print(file.read())
       input(">...This is the worst autopsy youve ever read.")
       autopsy.progress += 1    
+    else:
+      print("")
+      input("> ...")
+      print("")
+      input("'...Here's the uhh... Autopsy...sir.'")
+      input("'*The officer hands you a wrinkled piece of paper.'")
+      autopsy.progress += 1
     input("...")
     input(">I think we are done here...")
     corpse_discovery += 1
@@ -259,27 +260,55 @@ def movementbarrier():
 ### ALTERANTIVE MAP/MOVEMENT DESIGN, instead of WASD just ask where the user wants to go
 
 def inventory():
-  print("")
-  print("---------------------------------------")
-  print("YOU HAVE: ")
-  if autopsy.progress == 1:
-    print(f"[1] {autopsy.name}")
-  if bullet_casing.progress == 1:
-    print(f"[2] {bullet_casing.name}")
-  if safe_keycard.progress == 1:
-    print(f"[3] {safe_keycard.name}")
-  if vixen_gun.progress == 1:
-    print(f"[4] {vixen_gun.name}")
-  if lucas_gun.progress == 1:
-    print(f"[5] {lucas_gun.name}")
-  if rent_bill.progress == 1:
-    print(f"[6] {rent_bill.name}")
-  print("")
-
-  print("---------------------------------------")
-  print("")
-  input("input")
-
+  while True:
+    print("")
+    print("---------------------------------------")
+    print("YOU HAVE: ")
+    if autopsy.progress == 1:
+      print(f"[1] {autopsy.name}")
+    if bullet_casing.progress == 1:
+      print(f"[2] {bullet_casing.name}")
+    if safe_keycard.progress == 1:
+      print(f"[3] {safe_keycard.name}")
+    if vixen_gun.progress == 1:
+      print(f"[4] {vixen_gun.name}")
+    if lucas_gun.progress == 1:
+      print(f"[5] {lucas_gun.name}")
+    if rent_bill.progress == 1:
+      print(f"[6] {rent_bill.name}")
+    print("")
+    print("[9] Leave")
+    print("---------------------------------------")
+    print("")
+    invchoice = input("CHOICE: ")
+    if invchoice == "1" and autopsy.progress == 1:
+      cls()
+      input(f"{autopsy.description}")
+      pass
+    elif invchoice == "2" and bullet_casing.progress == 1:
+      cls()
+      print(f"{bullet_casing.description}")
+      pass
+    elif invchoice == "3":
+      cls()
+      print(f"{safe_keycard.description}")
+      pass
+    elif invchoice == "4":
+      cls()
+      print(f"{vixen_gun.description}")
+      pass
+    elif invchoice == "5":
+      cls()
+      print(f"{lucas_gun.description}")
+      pass
+    elif invchoice == "6":
+      cls()
+      print(f"{rent_bill.description}")
+      pass
+    elif invchoice == "9":
+      break
+    else:
+      pass
 def roomdesc():
   if x_loc == 0 and y_loc == 0:
     print (rooms["Room 119"]["name"])
@@ -304,7 +333,7 @@ def roomdesc():
   elif x_loc == 0 and y_loc == 1 and corpse_discovery == 0:
     print (rooms["Hallway"]["name"])
     print("")
-    print ("[PRESS Q] ... What do I need to again?")
+    print ("[PRESS 2] ... What do I need to again?")
   
 def suspectroom():
   input("*You step inside...")
@@ -335,9 +364,7 @@ def suspectroom():
     if suspectroomchoice == "5":
       arrest()
       pass
-    
-
-  
+      
 def vixentalk():
   global vixenstress
   while True:
@@ -365,10 +392,12 @@ def vixentalk():
       input("'She was my neighbor'")
       print("")
       input("'...'")
-      print("[1] Just a neighbor?")
-      print("[2] Anything else?")
       pass
     if vixentalkquest == "2":
+      print("> What did you know about the murder?")
+      print("")
+      input("'I woke up, to hear some yelling...'")
+      input("'Than I got ouside and I saw everyone surronded by the victim'")
       pass
     if vixentalkquest == "3":
       pass
@@ -433,8 +462,18 @@ def olivertalk():
     olivertalkquest = input("CHOICE: ")
     cls()
     if olivertalkquest == "1":
+      input("*He shifts awkardly...")
+      input("'I don't know much about her sir'")
+      input("'I woke up to a gunshot... and then I looked outside...'")
+      input("'I tried to help her...'")
+      input("'-but she died later'")
+      input("*hm")
       pass
     if olivertalkquest == "2":
+      input("'I woke up to a gunshot... and then I looked outside...'")
+      input("'I tried to help her...'")
+      input("'-but she died later'")
+      input("*hm")
       pass
     if olivertalkquest == "3":
       pass
@@ -677,10 +716,10 @@ def lucasroom():
       lucas_gun.progress+=1
       pass
     elif lucasroomchoice == "2":
-      input("Geez rick this place is bougie")
+      input("*You notice punch holes in one of the walls...")
       pass
     elif lucasroomchoice == "3":
-      input("MORTY, IM IN THE TOILET MORTY")
+      input("...>Why am I here?")
       pass
     elif lucasroomchoice == "4":
       break
@@ -778,15 +817,14 @@ def movement(direction):
       input("*THERE IS NOTHING HERE TO DO")
   elif direction == "3":
     inventory()
+
 while True:
   cls()
   with open(mainui) as file:
     print(file.read())
   roomdesc()
-  if autopsy.progress == 0:
-    print(f"NAME: {autopsy.name}")
   #DEV TOOL
-  print("COORDINATES: ",f"{x_loc}, {y_loc}")
+  print("")
   direction = input("CHOICE: ")
   movement(direction)
 

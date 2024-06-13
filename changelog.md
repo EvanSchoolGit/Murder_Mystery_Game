@@ -12,3 +12,7 @@ Version 0.10
 -added inventory system
 -added inspection
 -added dialogue features such as random chance
+
+Version 0.40
+-finished inventory system
+-finished 
