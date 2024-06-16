@@ -18,9 +18,13 @@ Incomplete Murder Mystery Game.
 import random
 import os
 
-from end import oliverend, lucasend, vixenend, wilsonend
+from dialogue import vixentalk, olivertalk, lucastalk
+
+from end import oliverend, lucasend, vixenend, wilsonend, intro
 
 from items import autopsy, bullet_casing, lucas_gun, rent_bill, safe_keycard, vixen_gun
+
+
 
 """Location Values"""
 
@@ -33,9 +37,6 @@ corpse_discovery = 0
 vixen_roomentry = 0
 kidlock = 0
 safeprogress = 0
-vixenstress = 0
-oliverstress = 0
-lucasstress = 0
 "Child Class Setups"
 
 
@@ -74,38 +75,18 @@ rooms = {
 def cls():
   os.system('cls' if os.name=='nt' else 'clear')
 
-def intro():
-  input("You are a commodity.")
-  input("You are interchangable to Oil, Land or Water")
-  input("Your value, however, is tied to work")
-  input("Such as gasoline's value is producing energy, you produce work")
-  input("Your work, however, is tied to solving murders")
-  input("You are the first of your brand to do so")
-  input("It is upmost importance, that you will excel at your job")
-  input("if not...")
-  input("'Products can always be recalled'")
-  print("")
-  input("...")
-  print("")
-  input("You arrive on the scene")
-  input("This is what you know...")
-  with open(casefile) as file:
-    print(file.read())
-  input("...")
-  cls()
-  input("The memory burns...")
-  input("Get going, product")
 
 intro()
 
 def tutorial():
-  #DRAFT TEXT, FEEL FREE TO CHANGE ANYTHING, THIS IS ALL RUBBISH
+  #Text Scrunch Problems Fix
   global wilson_progress
   with open(person) as file:
     print(file.read())
   if wilson_progress == 0:
     input("'God, you're so ugly!'")
     input("'Why does your skin look transparent, Jesus Christ!'")
+    print("")
     print("[1] It's a medical condition.")
     print("[2] What skin?")
     tutorial1 = input("CHOICE: ")
@@ -148,7 +129,8 @@ def tutorial():
     input("GET GOING: ")
     wilson_progress += 1
   elif wilson_progress == 1:
-    input("WHY ARE YOU TALKING TO ME?! DO YOUR JOB LACKIE!: ")
+    input("WHY ARE YOU TALKING TO ME?! GO TO THE BODY LACKY!: ")
+tutorial()
 
 def corpseinter():
   #FIX FORMATTING
@@ -257,9 +239,9 @@ def movementbarrier():
     print("[YOU MADE A KID CRY, SHE IS NOT LETTING YOU INSIDE.]")
     
   
-### ALTERANTIVE MAP/MOVEMENT DESIGN, instead of WASD just ask where the user wants to go
 
 def inventory():
+  #FINISH INVENTORY EXCEPTIONS
   while True:
     print("")
     print("---------------------------------------")
@@ -283,7 +265,9 @@ def inventory():
     invchoice = input("CHOICE: ")
     if invchoice == "1" and autopsy.progress == 1:
       cls()
-      input(f"{autopsy.description}")
+      print(f"{autopsy.description}")
+      with open(autopsyfile) as file:
+         print(file.read())
       pass
     elif invchoice == "2" and bullet_casing.progress == 1:
       cls()
@@ -365,124 +349,6 @@ def suspectroom():
       arrest()
       pass
       
-def vixentalk():
-  global vixenstress
-  while True:
-    cls()
-    if vixenstress == 0:
-      with open(person) as file:
-        print(file.read())
-    elif vixenstress == 2:
-      with open(personstress) as file:
-        print(file.read())
-    print("--------------------------------------------------")
-    print("[1] How did you know the victim? ")
-    print("[2] What did you know about the murder? ")
-    if rent_bill.progress == 1:
-      print("[3] Why are you still living here without paying all of your rent?")
-    if rent_bill.progress == 1 and vixen_gun.progress == 1:
-      print("[4] Did you being poor and desperate ever factor into the murder?")
-    print("[5] I'm done with you")
-    print("--------------------------------------------------")
-    vixentalkquest = input("CHOICE: ")
-    cls()
-    if vixentalkquest == "1":
-      print("> How did you know the victim?")
-      print("")
-      input("'She was my neighbor'")
-      print("")
-      input("'...'")
-      pass
-    if vixentalkquest == "2":
-      print("> What did you know about the murder?")
-      print("")
-      input("'I woke up, to hear some yelling...'")
-      input("'Than I got ouside and I saw everyone surronded by the victim'")
-      pass
-    if vixentalkquest == "3":
-      pass
-    if vixentalkquest == "4":
-      pass
-    if vixentalkquest == "5":
-      break
-
-
-    
-  #VIXEN DIALOGUE AND QUESTIONING
-  pass
-  
-def lucastalk():
-  global lucasstress
-  while True:
-    cls()
-    if lucasstress == 0:
-      with open(person) as file:
-        print(file.read())
-    elif lucasstress == 2:
-      with open(personstress) as file:
-        print(file.read())
-    print("--------------------------------------------------")
-    print("[1] How did you know the victim? ")
-    print("[2] What did you know about the murder? ")
-    if lucas_gun.progress == 1:
-      print("[3] Tell me why you have a gun in your room?")
-    print("[4] I'm done with you")
-    print("--------------------------------------------------")
-    lucastalkquest = input("CHOICE: ")
-    cls()
-    if lucastalkquest == "1":
-      pass
-    if lucastalkquest == "2":
-      pass
-    if lucastalkquest == "3":
-      pass
-    if lucastalkquest == "4":
-      break
-
-  #LUCAS DIALOGUE AND QUESTIONING
-  pass
-  
-def olivertalk():
-  global oliverstress
-  while True:
-    cls()
-    if oliverstress == 0:
-      with open(person) as file:
-        print(file.read())
-    elif lucasstress == 2:
-      with open(personstress) as file:
-        print(file.read())
-    print("--------------------------------------------------")
-    print("[1] How did you know the victim? ")
-    print("[2] What did you know about the murder? ")
-    if safe_keycard.progress == 1:
-      print("[3] Where did you find this?")
-    print("[4] I'm done with you")
-    print("--------------------------------------------------")
-    olivertalkquest = input("CHOICE: ")
-    cls()
-    if olivertalkquest == "1":
-      input("*He shifts awkardly...")
-      input("'I don't know much about her sir'")
-      input("'I woke up to a gunshot... and then I looked outside...'")
-      input("'I tried to help her...'")
-      input("'-but she died later'")
-      input("*hm")
-      pass
-    if olivertalkquest == "2":
-      input("'I woke up to a gunshot... and then I looked outside...'")
-      input("'I tried to help her...'")
-      input("'-but she died later'")
-      input("*hm")
-      pass
-    if olivertalkquest == "3":
-      pass
-    if olivertalkquest == "4":
-      break
-
-  #OLIVER DIALOGUE AND QUESTIONING
-  pass
-
 def arrest():
   cls()
   print("(WARNING, THIS IS THE FINAL DESCISION, BE CAUTIOUS)")
@@ -511,6 +377,7 @@ def arrest():
   pass
   
 def vixenroomentry():
+  #When incorrect choice in first question, it does nothing
   global vixen_roomentry, kidlock
   input("*You open the door...")
   input("*Cracks and mold are immediately present before entry...")
@@ -600,6 +467,7 @@ def vixenroomentry():
       print("")
       input(">...Dammit")
       vixen_roomentry += 2
+      
   elif childquest == "2":
     print(">Are you not supposed to be here?")
     print("")
@@ -759,16 +627,21 @@ def oliverroom():
   
 def movement(direction): 
   global x_loc, y_loc
+  cls()
   if direction == "1":  #This will ask directly where the user wants to go.
     while True:
       with open(movementui) as file:
         print(file.read())
       directionquest = input("Where do you want to go to?: ")
       if directionquest == "1":
+        x_loc = 1
+        y_loc = 1
+        break
+      elif directionquest == "2":
         x_loc = 0
         y_loc = 0
         break
-      elif directionquest == "2":
+      elif directionquest == "3":
         x_loc = 1
         y_loc = 0
         if vixen_roomentry == 0:
@@ -780,19 +653,12 @@ def movement(direction):
           break
         else:
           break
-      elif directionquest == "3":
-        x_loc = 0
-        y_loc = 1
         break
       elif directionquest == "4":
-        x_loc = 1
-        y_loc = 1
-        break
-      elif directionquest == "5":
         x_loc = 0
         y_loc = 2
         break
-      elif directionquest == "6":
+      elif directionquest == "5":
         x_loc = 1
         y_loc = 2
         break

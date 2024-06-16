@@ -1,8 +1,8 @@
 -----------------------------------------------------
-[1] - Suspect Lineup
-[2] - Vixen's Room
-[3] - Wilson's Spot
-[4] - Body's Location
-[5] - Oliver's Room
-[6] - Lucas and Lisa's Room
+[1] - Body's Location
+[2] - Suspect's Lineup
+
+[3] - Vixen's Room
+[4] - Oliver's Room
+[5] - Lucas and Lisa's Room
 ----------------------------------------------------
