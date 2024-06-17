@@ -16,10 +16,12 @@ lucas_gun = Items(name = "SER Revolver",
             description = "These are usually assigned to military personnel",
             progress = 0)
 vixen_gun = Items(name = "SE Semi Automatic",
-            description = "A weapon commonly associated with people down on their luck",
+            description = "A weapon commonly associated with people down on their" +
+                  " luck. There is blood on the handle",
             progress = 0)
 safe_keycard = Items(name = "Grimy Piece of Paper",
-               description = "A scrap of paper with the numbers 1294. It's covered with red stains",
+               description = "A scrap of paper with the numbers 187." +
+                             "It's covered with red stains",
                progress = 0)
 rent_bill = Items(name = "Overdue Rent Bill",
             description = "It looks like the person who was given this was short 65$...",

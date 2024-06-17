@@ -24,6 +24,8 @@ from end import oliverend, lucasend, vixenend, wilsonend, intro
 
 from items import autopsy, bullet_casing, lucas_gun, rent_bill, safe_keycard, vixen_gun
 
+from rooms import vixenroomentry, vixen_roomentry, vixenroom, lucasroom, oliverroom
+
 
 
 """Location Values"""
@@ -34,9 +36,6 @@ y_loc=1
 "Progress Keys"
 wilson_progress = 0
 corpse_discovery = 0
-vixen_roomentry = 0
-kidlock = 0
-safeprogress = 0
 "Child Class Setups"
 
 
@@ -51,19 +50,19 @@ casefile = 'casefile.txt'
 
 rooms = {
   "Room 118": {
-    "name" : "ROOM: Room 118",
+    "name" : "ROOM: Oliver's Room",
     "description" : ""'Oliver lives here.'""},
 
   "Room 119": {
-    "name" : "ROOM: Room 119",
-    "description" : """INSERT BLURB """},
+    "name" : "ROOM: Suspects Lineup",
+    "description" : " "},
 
   "Room 120": {
-    "name" : "ROOM: Room 120",
+    "name" : "ROOM: Lucas' Room",
     "description" : """Lucas and Lisa used to live here."""},
 
   "Room 121": {
-    "name" : "ROOM: Room 121",
+    "name" : "ROOM: Vixen's Room",
     "description" : "Vixen lives here."},
 
   "Hallway": {
@@ -148,7 +147,8 @@ def corpseinter():
     print("[2] Ask for an Improv Autopsy")
     corpsequest = input("CHOICE: ")
     if corpsequest == "1":
-      input("*You look over the body and see a bloodied gash on the victims chest.")
+      input("*You look over the body and see a bloodied gash on the victims" +
+            "chest near the heart.")
       input("*The wounds are too small to come from a knife.")
       print("")
       input("...'sir?'")
@@ -223,22 +223,7 @@ def corpseinter():
     input(">I think we are done here...")
     corpse_discovery += 1
 
-#prevent player from moving past mandatory scenes
-def movementbarrier():
-  global x_loc, y_loc
-  if corpse_discovery == 0:
-    if y_loc == 1:
-      pass
-    else:
-      x_loc = 0
-      y_loc = 1
-      print("[YOU NEED TO INSPECT THE BODY FIRST]")
-  if vixen_roomentry == 2 and x_loc == 1 and y_loc == 0:
-    x_loc = 1
-    y_loc = 1
-    print("[YOU MADE A KID CRY, SHE IS NOT LETTING YOU INSIDE.]")
-    
-  
+
 
 def inventory():
   #FINISH INVENTORY EXCEPTIONS
@@ -273,19 +258,19 @@ def inventory():
       cls()
       print(f"{bullet_casing.description}")
       pass
-    elif invchoice == "3":
+    elif invchoice == "3" and safe_keycard.progress == 1:
       cls()
       print(f"{safe_keycard.description}")
       pass
-    elif invchoice == "4":
+    elif invchoice == "4" and vixen_gun.progress == 1:
       cls()
       print(f"{vixen_gun.description}")
       pass
-    elif invchoice == "5":
+    elif invchoice == "5" and lucas_gun.progress == 1:
       cls()
       print(f"{lucas_gun.description}")
       pass
-    elif invchoice == "6":
+    elif invchoice == "6" and rent_bill.progress == 1:
       cls()
       print(f"{rent_bill.description}")
       pass
@@ -376,254 +361,7 @@ def arrest():
       pass
   pass
   
-def vixenroomentry():
-  #When incorrect choice in first question, it does nothing
-  global vixen_roomentry, kidlock
-  input("*You open the door...")
-  input("*Cracks and mold are immediately present before entry...")
-  input("*This would breach a few RISHA regulations...")
-  input("...")
-  input("'Hello?'")
-  print("")
-  input("*A child peeks around the doorframe, staring at you.")
-  print("")
-  print("[1] Wassup dude")
-  print("[2] Are you not supposed to be here?")
-  childquest = input("CHOICE: ")
-  if childquest == "1":
-    print(">Wassup dude")
-    print("")
-    input("'I'm not a dude!' the kid whines.")
-    input("'I'm a girl, watch!'")
-    input("*The child claps her hands as she spins around energetically.")
-    input("'See!'")
-    input("*The child has a pride in her performance...")
-    print("")
-    print("[1] Wow! You are so good... at... that!")
-    print("[2] Honestly, that was once of the worst performances I have ever seen, " +
-    "and I think you should give up, as soon as possible.")
-    childquesta = input("CHOICE: ")
-    if childquesta == "1":
-      print("> Wow! You are so good... at... that!")
-      print("")
-      input("'I know!'")
-      input("'I'm not allowed to let angry men inside'")
-      input("'My mom told me that'")
-      print("")
-      print("[1] I am not angry")
-      print("[2] I am not a man")
-      childquesa1 = input("CHOICE: ")
-      if childquesa1 == "1":
-        print(">I am not angry")
-        print("")
-        input("'Oh, Okay!'")
-        input("*The child opens the door wider")
-        input("'Come inside!'")
-        vixen_roomentry += 1
-      elif childquesa1 == "2":
-        print(">I am not a man")
-        print("")
-        input("'Oh...'")
-        input("*She squints her eyes...")
-        input("'What are you then?'")
-        print("")
-        input("*You don't know how to answer that...")
-        input("'Doesn't matter! You can come in!'")
-        vixen_roomentry += 1
-      else:
-        input("*At this moment in time, the worst scenario to have an episode, " +
-          "is at this current conversation")
-        input("*However, as she looks at you with a curious gaze, " +
-          "it quickly turns into a horrified stare as the bones " +
-          "in your body begin to crack")
-        input("*Your jaw unhinges, while your posture slumps, still keeping your eye" +
-          "contact with her")
-        input("*She immediateley slams the door...")
-        print("")
-        input(">...dammit")
-        vixen_roomentry += 2
-    elif childquesta == "2":
-      print(">Honestly, that was once of the worst performances I have ever seen, " +
-    "and I think you should give up, as soon as possible.")
-      print("")
-      input("*The child covers her mouth as if you shouted at her.")
-      input("*She holds her hands still as her breathing draws quicker and quicker.")
-      input("*Tears form around her eyes, as she tries to stiffle her reaction,")
-      input("*But she cannot hold it in.")
-      input("*Congratulations, you just made a kid cry!")
-      input("*She immediateley slams the door...")
-      print("")
-      input(">Alright...")
-      vixen_roomentry += 2
-    else:
-      input("*At this moment in time, the worst scenario to have an episode, " +
-            "is at this current conversation")
-      input("*However, as she gazes at you with a proud look, " +
-            "it quickly turns into a horrified stare as the bones " +
-            "in your body begin to crack")
-      input("*Your jaw unhinges, while your posture slumps, still keeping your eye" +
-            "contact with her")
-      input("*She immediateley slams the door...")
-      print("")
-      input(">...Dammit")
-      vixen_roomentry += 2
-      
-  elif childquest == "2":
-    print(">Are you not supposed to be here?")
-    print("")
-    input("*It scowls at you...")
-    input("'Are YOU not supposed to be here'")
-    input("'MY mom says I shouldn't let angry men inside'")
-    input("'and you seem to be all of those things...'")
-    print("")
-    print("[1] *Rush inside and throw the kid out (80%)")
-    print("[2] I am actually a very reasonable person")
-    childquestb = input("CHOICE: ")
-    if childquestb == ("1"):
-      childrandom = random.randint(0, 10)
-      if childrandom > 8:
-        print("[FAILURE]")
-        input("*You take form in a sprinter's position...")
-        input("*You have to act fast, and calculated, and-")
-        input("*...chk...click")
-        input("*...The door losed...")
-        input("*You slowly get up.")
-        input(">...Alright.")
-        vixen_roomentry += 2
-      elif childrandom < 8:
-        print("[SUCCESS]")
-        input("In one swift action, you ran inside as well as pushing out the child.")
-        input("'HEY!'")
-        input("*SLAM...click")
-        input("*You closed, and locked the door...")
-        kidlock += 1
-        vixen_roomentry += 1
-    elif childquestb == "2":
-      print(">I am actually very reasonable")
-      print("")
-      input("'Oh, Okay!'")
-      input("*The kid opens the door a bit more.")
-      input("'Come in!'")
-      vixen_roomentry += 1
-    else:
-      input("*...chk...click")
-      input("*...The door closed...")
-      input(">...Alright.")
-  else:
-    pass
-  pass
 
-
-
-def vixenroom():
-  #WRITE BETTER LATER
-  global safeprogress
-  input("*You step inside...")
-  input("*What should I do first?")
-  while True:
-    cls()
-    print("")
-    print("------------------------------------")
-    print("[1] CHECK THE BEDROOM")
-    print("[2] CHECK THE LIVING ROOM")
-    print("[3] CHECK THE BATHROOM")
-    if kidlock < 1:
-      print("[4] TALK TO THE CHILD")
-    print("[5] DO SOMETHING ELSE")
-    print("------------------------------------")
-    print("")
-    vixenroomchoice = input("CHOICE: ")
-    if vixenroomchoice == "1" and safeprogress == 0:
-      input("YOU FOUND SAFE")
-      safekeypad = input("INPUT: ")
-      if safekeypad == "187":
-        input("DING")
-        vixen_gun.progress += 1
-        safeprogress += 1
-        input("YOU OBTAINED A GUN")
-      else:
-        input("BEEP")
-        input("*You got it wrong")
-        pass      
-      pass
-      input("*You Already inspected this")
-    elif vixenroomchoice == "2":
-      input("YOU FOUND RENT BILL")
-      rent_bill.progress += 1
-      pass
-    elif vixenroomchoice == "3":
-      input("YOU FOUND NOTHING")
-      pass
-    elif vixenroomchoice == "4":
-      input("'Googoo ga ga lore dump'")
-      pass
-    elif vixenroomchoice == "5":
-      break
-    else:
-      input("WRONG INPUT")
-  
-
-
-def lucasroom():
-  #WRITE BETTER
-  input("*You step inside...")
-  input("*What should I do first?")
-  while True:
-    cls()
-    print("")
-    print("------------------------------------")
-    print("[1] CHECK THE BEDROOM")
-    print("[2] CHECK THE LIVING ROOM")
-    print("[3] CHECK THE BATHROOM")
-    print("[4] DO SOMETHING ELSE")
-    print("------------------------------------")
-    print("")
-    lucasroomchoice = input("CHOICE: ")
-    if lucasroomchoice == "1":
-      input("YOU FOUND REVOLVER")
-      lucas_gun.progress+=1
-      pass
-    elif lucasroomchoice == "2":
-      input("*You notice punch holes in one of the walls...")
-      pass
-    elif lucasroomchoice == "3":
-      input("...>Why am I here?")
-      pass
-    elif lucasroomchoice == "4":
-      break
-    else:
-      input("WRONG INPUT")
-      pass
-      
-  #LUCAS ROOM AND INTERACTION
-  
-def oliverroom():
-  input("*You step inside...")
-  input("*What should I do first?")
-  while True:
-    cls()
-    print("")
-    print("------------------------------------")
-    print("[1] CHECK THE BEDROOM")
-    print("[2] CHECK THE BATHROOM")
-    print("[3] DO SOMETHING ELSE")
-    print("------------------------------------")
-    print("")
-    oliverroomchoice = input("CHOICE: ")
-    if oliverroomchoice == "1":
-      input("This is really depressing")
-      pass
-    elif oliverroomchoice == "2":
-      input("*You plunged your hand into the the toilet hole")
-      input("*YOU FOUND VAULT PASS CODE")
-      safe_keycard.progress +=1
-      pass
-    elif oliverroomchoice == "3":
-      break
-    else:
-      input("WRONG INPUT")
-      pass
-  #OLIVER ROOM AND INTERACTION
   
 def movement(direction): 
   global x_loc, y_loc

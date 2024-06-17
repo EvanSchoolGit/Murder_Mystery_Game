@@ -39,12 +39,15 @@ def end():
   quit()
 
 def oliverend():
+  cls()
   end()
 
 def lucasend():
+  cls()
   end()
 
 def vixenend():
+  cls()
   end()
 
 def wilsonend():
