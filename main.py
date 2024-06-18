@@ -1,9 +1,8 @@
 
 #CHECKLIST
-#Add option of descriptions in inventory
-#finish all dialouge
 #finish all endings
-#clean up UI
+#STYLE GUIDE
+#ORGANIZE
 #######################################################################
 # Title : Murder Mystery
 # Class : Computer Science 30
@@ -18,9 +17,7 @@ Incomplete Murder Mystery Game.
 import random
 import os
 
-from dialogue import vixentalk, olivertalk, lucastalk
-
-from end import oliverend, lucasend, vixenend, wilsonend, intro
+from dialogue import vixentalk, olivertalk, lucastalk, lucasmad, oliverend, lucasend, vixenend, wilsonend, intro
 
 from items import autopsy, bullet_casing, lucas_gun, rent_bill, safe_keycard, vixen_gun
 
@@ -153,7 +150,8 @@ def corpseinter():
       print("")
       input("...'sir?'")
       print("")
-      input("*A pike or some type of spear COULD do this, but thats highly illogical...")
+      input("*A pike or some type of spear COULD do this, " +
+            "but thats highly illogical...")
       print("")
       input("'Sir.'")
       print("")
@@ -197,7 +195,8 @@ def corpseinter():
           input("*You don't notice anything off with the corpse.")
         else:
           print("[SUCCESS]")
-          input("*As you look around, you notice that there is a small object, covered by the victim's hand.")
+          input("*As you look around, you notice that there " + 
+                "is a small object, covered by the victim's hand.")
           input("YOU OBTAINED SE BULLET CASING")
           bullet_casing.progress += 1
       elif corpsequesta2 == "2":
@@ -305,6 +304,7 @@ def roomdesc():
     print ("[PRESS 2] ... What do I need to again?")
   
 def suspectroom():
+  global lucasmad
   input("*You step inside...")
   input("*What should I do first")
   while True:
@@ -322,31 +322,38 @@ def suspectroom():
     if suspectroomchoice == "1":
       olivertalk()
       pass
-    if suspectroomchoice == "2":
+    elif suspectroomchoice == "2" and lucasmad == 0:
       lucastalk()
       pass
-    if suspectroomchoice == "3":
+    elif suspectroomchoice == "2" and lucasmad == 1:
+      input("*...Yeah...no shot he wants to talk to YOU again")
+      pass
+    elif suspectroomchoice == "3":
       vixentalk()
       pass
-    if suspectroomchoice == "4":
+    elif suspectroomchoice == "4":
       break
-    if suspectroomchoice == "5":
+    elif suspectroomchoice == "5":
       arrest()
+      pass
+    else:
+      print("WRONG INPUT")
       pass
       
 def arrest():
-  cls()
-  print("(WARNING, THIS IS THE FINAL DESCISION, BE CAUTIOUS)")
-  print("")
-  print("--------------------------------------------------")
-  print("[1] ARREST OLIVER")
-  print("[2] ARREST LUCAS")
-  print("[3] ARREST VIXEN")
-  print("[4] ARREST WILSON")
-  print("[5] Let me rethink this...")
-  print("--------------------------------------------------")
-  arrestchoice = input("CHOICE")
   while True:
+    cls()
+    print("(WARNING, THIS IS THE FINAL DESCISION, BE CAUTIOUS)")
+    print("")
+    print("--------------------------------------------------")
+    print("[1] ARREST OLIVER")
+    print("[2] ARREST LUCAS")
+    print("[3] ARREST VIXEN")
+    print("[4] ARREST WILSON")
+    print("[5] Let me rethink this...")
+    print("--------------------------------------------------")
+    arrestchoice = input("CHOICE")
+
     if arrestchoice == "1":
       oliverend()
     elif arrestchoice == "2":
@@ -359,7 +366,6 @@ def arrest():
       break
     else:
       pass
-  pass
   
 
   
@@ -384,6 +390,8 @@ def movement(direction):
         y_loc = 0
         if vixen_roomentry == 0:
           vixenroomentry()
+        elif vixen_roomentry == 1:
+          pass
         elif vixen_roomentry == 2:
           x_loc = 1
           y_loc = 1

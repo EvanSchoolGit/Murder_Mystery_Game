@@ -21,7 +21,7 @@ vixen_gun = Items(name = "SE Semi Automatic",
             progress = 0)
 safe_keycard = Items(name = "Grimy Piece of Paper",
                description = "A scrap of paper with the numbers 187." +
-                             "It's covered with red stains",
+                             " It's covered with red stains",
                progress = 0)
 rent_bill = Items(name = "Overdue Rent Bill",
             description = "It looks like the person who was given this was short 65$...",

@@ -100,7 +100,6 @@ def vixenroomentry():
       print("")
       input(">...Dammit")
       vixen_roomentry += 2
-
   elif childquest == "2":
     print(">Are you not supposed to be here?")
     print("")
